@@ -1,5 +1,7 @@
 import Koa      from 'koa';
 import logger   from 'koa-logger';
+import router   from './routes';
+import cors     from './lib/middlewares/cors';
 
 export default class Server {
     app;    // koa instance
@@ -13,6 +15,8 @@ export default class Server {
     middleware() {
         const { app } = this;
         app.use(logger());
+        app.use(cors);
+        app.use(router.routes()).use(router.allowedMethods());
     }
     
     // server start
