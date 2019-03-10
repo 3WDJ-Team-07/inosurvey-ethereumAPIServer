@@ -1,7 +1,8 @@
-import Koa      from 'koa';
-import logger   from 'koa-logger';
-import router   from './routes';
-import cors     from './lib/middlewares/cors';
+import Koa          from 'koa';
+import logger       from 'koa-logger';
+import router       from './routes';
+import cors         from './lib/middlewares/cors';
+import serverless   from 'serverless-http';
 
 export default class Server {
     app;    // koa instance
@@ -26,4 +27,9 @@ export default class Server {
         console.log(`Listening to port : ${port}`);
     }
 
+    // serverless handler
+    serverless() {
+        const { app } = this;
+        return serverless(app);
+    }
 }

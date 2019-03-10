@@ -6,7 +6,8 @@
   "repository": "https://github.com/3WDJ-Team-07/inosurvey-ethereumAPIServer.git",
   "author": "smallThinking <wnsdnek778@gmail.com>",
   "scripts": {
-    "start": "nodemon --inspect src/ --exec babel-node src/index.js"
+    "start": "NODE_PATH=src nodemon --inspect src/local --exec babel-node src/local.js",
+    "deploy": "sls deploy --stage dev"
   },
   "license": "MIT",
   "devDependencies": {
@@ -14,13 +15,19 @@
     "@babel/core": "^7.3.4",
     "@babel/node": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/preset-env": "^7.3.4"
+    "@babel/preset-env": "^7.3.4",
+    "babel-loader": "^8.0.5",
+    "serverless": "^1.38.0",
+    "serverless-dotenv-plugin": "^2.0.1",
+    "serverless-webpack": "^5.2.0",
+    "webpack": "^4.29.6"
   },
   "dependencies": {
     "dotenv": "^6.2.0",
     "koa": "^2.7.0",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "serverless-http": "^1.9.1"
   }
 }
