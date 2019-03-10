@@ -1,7 +1,7 @@
-// 환경 설정 파일  load
-require("dotenv").config();
+// 환경 설정 파일 load
+import Server from 'server';
 
-import Server from "server";
+require('dotenv').config();
 
 const server = new Server();
 

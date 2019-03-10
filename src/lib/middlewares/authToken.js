@@ -1,11 +1,11 @@
-import { decode } from "lib/token";
+import { decode } from 'lib/token';
 
 // 쿠키 방식 검증
 export default async (ctx, next) => {
   // 쿠키에 저장된 토큰 가져오기
-  const token = ctx.cookies.get("access_token");
+  const token = ctx.cookies.get('access_token');
   // 토큰이 없는 경우
-  if(!token) {
+  if (!token) {
     ctx.user = null;
     return next();
   }
