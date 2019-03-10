@@ -1,4 +1,4 @@
-import { generateToken } from '../../lib/token';
+import { generateToken } from 'lib/token';
 
 export const test = async (ctx, next) => {
     ctx.body = ctx.user ? ctx.user : "null";

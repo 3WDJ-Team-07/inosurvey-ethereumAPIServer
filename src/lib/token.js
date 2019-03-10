@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 // 토큰 생성
 export const generateToken = (payload, options) => {
-  const { SECRET_KEY: secret } = process.env; 
+  const { SECRET_KEY: secret } = process.env;
   return new Promise((resolve, reject) => {
     jwt.sign(
       payload,

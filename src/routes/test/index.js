@@ -1,6 +1,6 @@
 import Router        from 'koa-router';
-import * as testCtrl from './test.ctrl';
-import needsAuth     from '../../lib/middlewares/needsAuth';
+import * as testCtrl from 'routes/test/test.ctrl';
+import needsAuth     from 'lib/middlewares/needsAuth';
 
 const test = new Router();
 

@@ -1,9 +1,9 @@
 import Koa          from 'koa';
 import logger       from 'koa-logger';
-import router       from './routes';
+import router       from 'routes';
 import serverless   from 'serverless-http';
-import cors         from './lib/middlewares/cors';
-import authToken    from './lib/middlewares/authToken';
+import cors         from 'lib/middlewares/cors';
+import authToken    from 'lib/middlewares/authToken';
 
 export default class Server {
     app;    // koa instance
