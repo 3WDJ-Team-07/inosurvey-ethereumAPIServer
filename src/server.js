@@ -1,8 +1,9 @@
 import Koa          from 'koa';
 import logger       from 'koa-logger';
 import router       from './routes';
-import cors         from './lib/middlewares/cors';
 import serverless   from 'serverless-http';
+import cors         from './lib/middlewares/cors';
+import authToken    from './lib/middlewares/authToken';
 
 export default class Server {
     app;    // koa instance
@@ -17,7 +18,8 @@ export default class Server {
         const { app } = this;
         app.use(logger());
         app.use(cors);
-        app.use(router.routes()).use(router.allowedMethods());
+        app.use(authToken);
+        app.use(router.routes()).use(router.allowedMethods());   
     }
     
     // server start

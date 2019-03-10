@@ -3,5 +3,5 @@ import test     from './test';
 
 const router = new Router();
 
-router.use('/api', test.routes());
+router.use('/test', test.routes());
 export default router;

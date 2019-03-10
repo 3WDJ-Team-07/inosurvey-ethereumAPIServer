@@ -1,8 +1,15 @@
 import Router        from 'koa-router';
 import * as testCtrl from './test.ctrl';
+import needsAuth     from '../../lib/middlewares/needsAuth';
 
 const test = new Router();
 
-test.get('/test', testCtrl.test);
+test.get('/', testCtrl.test);
+
+test.get('/authpage', needsAuth, (ctx, next) => {
+  ctx.body = "success";
+})
+
+test.get('/get', testCtrl.getToken);
 
 export default test;
