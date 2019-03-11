@@ -7,8 +7,8 @@ const test = new Router();
 test.get('/', testCtrl.test);
 
 test.get('/authpage', needsAuth, (ctx, next) => {
-  ctx.body = "success";
-})
+    ctx.body = 'success';
+});
 
 test.get('/get', testCtrl.getToken);
 
