@@ -14,7 +14,7 @@ export default async (ctx, next) => {
         // 토큰 검증
         const decoded = await decode(token);
         const { user, exp } = decoded;
-
+        console.log(decoded);
         ctx.user = user;
         ctx.tokenExpire = new Date(exp * 1000);
     } catch (e) {

@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken';
 
+const { SECRET_KEY: secret } = process.env;
+
 // 토큰 생성
-export const generateToken = (payload, options) => {
-    const { SECRET_KEY: secret } = process.env;
+export const generate = (payload, options) => {
     return new Promise((resolve, reject) => {
         jwt.sign(
             payload,
@@ -22,7 +23,6 @@ export const generateToken = (payload, options) => {
 
 // 토큰 검증
 export const decode = token => {
-    const { SECRET_KEY: secret } = process.env;
     return new Promise((resolve, reject) => {
         jwt.verify(token, secret, (err, decoded) => {
             if (err) reject(err);

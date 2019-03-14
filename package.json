@@ -29,7 +29,10 @@
     "koa": "^2.7.0",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
+    "mariadb": "^2.0.3",
     "nodemon": "^1.18.10",
-    "serverless-http": "^1.9.1"
+    "sequelize": "^5.1.0",
+    "serverless-http": "^1.9.1",
+    "web3": "^1.0.0-beta.48"
   }
 }

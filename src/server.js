@@ -1,16 +1,54 @@
-import Koa        from 'koa';
-import logger     from 'koa-logger';
-import router     from 'routes';
+import Koa from 'koa';
+import logger from 'koa-logger';
+import router from 'routes';
 import serverless from 'serverless-http';
-import cors       from 'lib/middlewares/cors';
-import authToken  from 'lib/middlewares/authToken';
+import cors from 'lib/middlewares/cors';
+import authToken from 'lib/middlewares/authToken';
+import db from 'database/db';
+import { associate } from 'database/sync';
 
 export default class Server {
-    app;
-
+    app; // koa instance
+    
     constructor() {
+        associate();
         this.app = new Koa();
         this.middleware();
+        this.initializeDb();
+    }
+
+    // db init and connection
+    initializeDb() {
+        db.authenticate().then(
+            () => {
+                console.log('DB Connection has been established');
+            },
+            err => {
+                console.error('Unable to connect to the DB:', err);
+            }
+        );
+    }
+
+    // db testing
+    ensureDb() {
+        return new Promise((resolve, reject) => {
+            let counter = 0;
+            const tryConnect = async () => {
+                try {
+                    await db.authenticate();
+                    resolve();
+                } catch (e) {
+                    counter++;
+                    console.log(`db connection failed ${counter}`);
+                    if (counter > 5) {
+                        reject(new Error('Failed after 5 retries'));
+                        return;
+                    }
+                    setTimeout(tryConnect, 10);
+                }
+            };
+            tryConnect();
+        });
     }
 
     // middleware init
