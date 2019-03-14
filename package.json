@@ -7,6 +7,7 @@
   "author": "smallThinking <wnsdnek778@gmail.com>",
   "scripts": {
     "start": "NODE_PATH=src nodemon --inspect src/local --exec babel-node src/local.js",
+    "start:window": "set NODE_PATH=src & nodemon --inspect src/local --exec babel-node src/local.js",
     "deploy": "sls deploy --stage dev"
   },
   "license": "MIT",
