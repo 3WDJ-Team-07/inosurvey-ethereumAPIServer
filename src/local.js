@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 /* code issue #1
-* provlem code : import Server from './server';
+* problem code : import Server from './server';
 * problem : .env constants is undifined in db.js
 * reason: require VS import difference
 *   require - Synchronous loading

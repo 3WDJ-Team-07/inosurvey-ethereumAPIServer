@@ -5,11 +5,11 @@ import serverless from 'serverless-http';
 import cors from 'lib/middlewares/cors';
 import authToken from 'lib/middlewares/authToken';
 import db from 'database/db';
-import { associate } from 'database/sync';
+import { associate, sync } from 'database/sync';
 
 export default class Server {
     app; // koa instance
-    
+
     constructor() {
         associate();
         this.app = new Koa();
@@ -27,9 +27,10 @@ export default class Server {
                 console.error('Unable to connect to the DB:', err);
             }
         );
+        sync();
     }
 
-    // db testing
+    // db ensure testing
     ensureDb() {
         return new Promise((resolve, reject) => {
             let counter = 0;
@@ -56,6 +57,14 @@ export default class Server {
         const { app } = this;
         app.use(logger());
         app.use(cors);
+        app.use(async (ctx, next) => {
+            try {
+                await this.ensureDb();
+                return next();
+            } catch (e) {
+                ctx.throw(e);
+            }
+        });
         app.use(authToken);
         app.use(router.routes()).use(router.allowedMethods());
     }
