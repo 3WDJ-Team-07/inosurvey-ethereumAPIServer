@@ -1,48 +1,45 @@
 import Sequelize from 'sequelize';
 import db from 'database/db';
 
-const User = db.define(
-    'user',
+const Donation = db.define(
+    'donation',
     {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        user_id: {
+        title: {
             type: Sequelize.STRING
         },
-        password: {
+        content: {
             type: Sequelize.STRING
         },
-        email: {
+        image: {
             type: Sequelize.STRING
         },
-        nickname: {
-            type: Sequelize.STRING
-        },
-        gender: {
+        target_amount: {
             type: Sequelize.INTEGER
         },
-        age: {
+        current_amount: {
             type: Sequelize.INTEGER
         },
-        is_donator: {
+        started_at: {
+            type: Sequelize.TIME
+        },
+        closed_at: {
+            type: Sequelize.TIME
+        },
+        is_achieved: {
             type: Sequelize.BOOLEAN
         },
-        job_id: {
+        donator_id: {
             type: Sequelize.INTEGER
-        },
+        }
     },
     {
-        timestamps: true,
-        createdAt: 'created_at',
-        updatedAt: 'updated_at'
+        timestamps: false
     }
 );
 
-User.associate = function () {
-
-};
-
-export default User;
+export default Donation;

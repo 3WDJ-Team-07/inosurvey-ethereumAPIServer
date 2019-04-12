@@ -1,13 +1,25 @@
 import db from 'database/db';
-import { User } from './model';
+import { 
+    User,
+    Job,
+    Donation,
+    Wallet,
+    Topic,
+    Target
+ } from './model';
 
 // run assoiate in model instance
 export function associate() {
     console.log('assoiate func');
+    // User.associate();
+    // Job.associate();
+    // Donation.associate();
+    Wallet.associate();
+    // Topic.associate();
 }
 
-export function sync() {
+export default function sync() {
     // console.log('asd');
-    // assoiate();
+    associate();
     db.sync();
 }
