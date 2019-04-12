@@ -4,7 +4,7 @@ import { User } from 'database/model';
 export const test = async (ctx, next) => {
     const {id, password} = await User.findOne({
         where: {id: `asd`}
-    });
+    });6
     ctx.body = ctx.user ? ctx.user : 'Noop!';
 };
 

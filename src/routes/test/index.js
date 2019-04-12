@@ -10,6 +10,13 @@ test.get('/authpage', needsAuth, (ctx, next) => {
     ctx.body = 'success';
 });
 
+test.get('/asd', (ctx, next) => {
+    ctx.status = 200;
+    ctx.body = {
+        user : 'jeong'
+    };
+});
+
 test.get('/get', testCtrl.getToken);
 
 export default test;
