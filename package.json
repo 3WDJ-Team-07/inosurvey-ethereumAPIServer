@@ -2,7 +2,6 @@
   "name": "inosurvey-ethereumAPIServer",
   "version": "1.0.0",
   "description": "ethereum RESTful API server with koajs",
-  "main": "index.js",
   "repository": "https://github.com/3WDJ-Team-07/inosurvey-ethereumAPIServer.git",
   "author": "smallThinking <wnsdnek778@gmail.com>",
   "scripts": {

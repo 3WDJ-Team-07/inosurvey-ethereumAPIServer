@@ -1,8 +1,9 @@
 import Sequelize from 'sequelize';
 import db from 'database/db';
+import User from './User';
 
 const Job = db.define(
-    'job',
+    'jobs',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -14,8 +15,13 @@ const Job = db.define(
         }
     },
     {
+        underscored: true,
         timestamps: false
     }
 );
+
+Job.associate = function () {
+    Job.hasOne(User);
+}
 
 export default Job;

@@ -14,12 +14,11 @@ export function associate() {
     // User.associate();
     // Job.associate();
     // Donation.associate();
-    Wallet.associate();
+    // Wallet.associate();
     // Topic.associate();
 }
 
 export default function sync() {
-    // console.log('asd');
     associate();
     db.sync();
 }

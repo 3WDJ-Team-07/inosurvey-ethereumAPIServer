@@ -1,21 +1,25 @@
 import Sequelize from 'sequelize';
 import db from 'database/db';
 
-const Topic = db.define(
-    'topics',
+const SurveyUser = db.define(
+    'survey_user',
     {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        topic: {
-            type: Sequelize.STRING
+        survey_id: {
+            type: Sequelize.INTEGER
+        },
+        respondent_id: {
+            type: Sequelize.INTEGER
         }
     },
     {
+        underscored: true,
         timestamps: false
     }
 );
 
-export default Topic;
+export default SurveyUser;

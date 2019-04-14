@@ -1,16 +1,25 @@
 import Sequelize from 'sequelize';
 import db from 'database/db';
 
-const Type = db.define(
-    'types',
+const QuestionItem = db.define(
+    'question_items',
     {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        type: {
+        content: {
             type: Sequelize.STRING
+        },
+        content_number: {
+            type: Sequelize.INTEGER
+        },
+        content_image: {
+            type: Sequelize.TEXT
+        },
+        question_id: {
+            type: Sequelize.INTEGER
         }
     },
     {
@@ -19,4 +28,4 @@ const Type = db.define(
     }
 );
 
-export default Type;
+export default QuestionItem;

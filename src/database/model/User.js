@@ -1,8 +1,14 @@
 import Sequelize from 'sequelize';
 import db from 'database/db';
 
+import {
+    Wallet,
+    Job,
+    Donation
+} from 'database/model';
+
 const User = db.define(
-    'user',
+    'users',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -32,17 +38,18 @@ const User = db.define(
         },
         job_id: {
             type: Sequelize.INTEGER
-        },
+        }
     },
     {
+        underscored: true,
         timestamps: true,
-        createdAt: 'created_at',
-        updatedAt: 'updated_at'
     }
 );
 
 User.associate = function () {
-
+    User.hasOne(Wallet);
+    User.belongsTo(Job);
+    User.hasMany(Donation, { foreignKey: 'donator_id' });
 };
 
 export default User;

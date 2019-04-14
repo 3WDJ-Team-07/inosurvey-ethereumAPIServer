@@ -1,21 +1,28 @@
 import Sequelize from 'sequelize';
 import db from 'database/db';
 
-const Topic = db.define(
-    'topics',
+const Response = db.define(
+    'responses',
     {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        topic: {
+        question_text: {
             type: Sequelize.STRING
+        },
+        question_id: {
+            type: Sequelize.INTEGER
+        },
+        response_id: {
+            type: Sequelize.INTEGER
         }
     },
     {
+        underscored: true,
         timestamps: false
     }
 );
 
-export default Topic;
+export default Response;

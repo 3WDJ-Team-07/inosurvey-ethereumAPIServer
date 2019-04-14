@@ -1,8 +1,9 @@
 import Sequelize from 'sequelize';
 import db from 'database/db';
+import { User } from 'database/model';
 
 const Donation = db.define(
-    'donation',
+    'donations',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -38,8 +39,13 @@ const Donation = db.define(
         }
     },
     {
+        underscored: true,
         timestamps: false
     }
 );
+
+Donation.associate = function () {
+    Donation.belongsTo(User, { as: 'donator' });
+}
 
 export default Donation;

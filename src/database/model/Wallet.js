@@ -3,26 +3,27 @@ import db from 'database/db';
 import User from './User';
 
 const Wallet = db.define(
-    'wallet',
+    'wallets',
     {
-        user_id: {
-            type: Sequelize.INTEGER
-        },
         public_key: {
             type: Sequelize.STRING
         },
         private_key: {
             type: Sequelize.STRING
+        },
+        user_id: {
+            type: Sequelize.INTEGER
         }
     },
     {
-        timestamps: false
+        timestamps: false,
+        underscored: true
     }
 );
 Wallet.removeAttribute('id');
 
 Wallet.associate = function() {
-    Wallet.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE'});
+    Wallet.belongsTo(User);
 }
 
 export default Wallet;

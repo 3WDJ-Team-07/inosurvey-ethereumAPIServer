@@ -9,5 +9,11 @@ modelRouter.get('/donation', modelCtrl.modelDonation);
 modelRouter.get('/wallet', modelCtrl.modelWallet);
 modelRouter.get('/topic', modelCtrl.modelTopic);
 modelRouter.get('/target', modelCtrl.modelTarget);
+modelRouter.get('/form', modelCtrl.modelForm);
+modelRouter.get('/type', modelCtrl.modelType);
+modelRouter.get('/question', modelCtrl.modelQuestion);
+modelRouter.get('/questionitem', modelCtrl.modelQuestionItem);
+modelRouter.get('/surveyuser', modelCtrl.modelSurveyUser);
+modelRouter.get('/response', modelCtrl.modelResponse);
 
 export default modelRouter;

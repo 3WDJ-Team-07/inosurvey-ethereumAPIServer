@@ -19,6 +19,10 @@ const db = new Sequelize(DB_DATABASE, DB_USERNAME, DB_PASSWORD, {
         min: 0,
         acquire: 30000,
         idle: 10000
+    },
+    define: {
+        underscored: true,
+        freezeTableName: true
     }
 });
 

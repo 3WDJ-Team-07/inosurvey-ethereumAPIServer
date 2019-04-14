@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 import db from 'database/db';
 
 const Target = db.define(
-    'target',
+    'targets',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -23,6 +23,7 @@ const Target = db.define(
         }
     },
     {
+        underscored: true,
         timestamps: false
     }
 );

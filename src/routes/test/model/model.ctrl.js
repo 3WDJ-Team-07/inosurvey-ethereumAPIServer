@@ -4,26 +4,34 @@ import {
     Donation,
     Wallet,
     Topic,
-    Target
+    Target,
+    Form,
+    Type,
+    Question,
+    QuestionItem,
+    SurveyUser,
+    Response
 } from 'database/model';
 
 export const modelUser = async (ctx, next) => {
-    const {user_id, password} = await User.findOne({
-        where: {id: 1}
+    const user = await User.findOne({
+        where: {
+            id: 3
+        }
     });
-    ctx.body = `${user_id}, ${password}`;
+    ctx.body = user;
 };
 
 export const modelJob = async (ctx, next) => {
-    const {id, name} = await Job.findOne({
+    const job = await Job.findOne({
         where: {id: 1}
     });
-    ctx.body = `${id}, ${name}`;
+    ctx.body = job;
 };
 
 export const modelDonation = async (ctx, next) => {
     const donation = await Donation.findOne({
-        where: {id: 1}
+        where: {id: 2}
     });
     ctx.body = donation;
 };
@@ -47,4 +55,46 @@ export const modelTarget = async (ctx, next) => {
         where: {job_id: 8}
     });
     ctx.body = target;
+};
+
+export const modelForm = async (ctx, next) => {
+    const form = await Form.findOne({
+        where: {id: 1}
+    });
+    ctx.body = form;
+};
+
+export const modelType = async (ctx, next) => {
+    const type = await Type.findOne({
+        where: {id: 1}
+    });
+    ctx.body = type;
+};
+
+export const modelQuestion = async (ctx, next) => {
+    const question = await Question.findOne({
+        where: {id: 1}
+    });
+    ctx.body = question;
+};
+
+export const modelQuestionItem = async (ctx, next) => {
+    const questionItem = await QuestionItem.findOne({
+        where: {id: 1}
+    });
+    ctx.body = questionItem;
+};
+
+export const modelSurveyUser = async (ctx, next) => {
+    const surveyUser = await SurveyUser.findAll({
+        where: {survey_id: 10}
+    });
+    ctx.body = surveyUser;
+};
+
+export const modelResponse = async (ctx, next) => {
+    const response = await Response.findAll({
+        where: {question_id: 5}
+    });
+    ctx.body = response;
 };
