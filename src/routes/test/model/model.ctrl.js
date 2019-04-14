@@ -10,7 +10,11 @@ import {
     Question,
     QuestionItem,
     SurveyUser,
-    Response
+    Response,
+    ItemResponse,
+    DonationUser,
+    ReplyableUser,
+    QuestionBank
 } from 'database/model';
 
 export const modelUser = async (ctx, next) => {
@@ -98,3 +102,30 @@ export const modelResponse = async (ctx, next) => {
     });
     ctx.body = response;
 };
+
+export const modelItemResponse = async (ctx, next) => {
+    const itemResponse = await ItemResponse.findAll({
+        where: {response_id: 1}
+    });
+    ctx.body = itemResponse;
+};
+
+export const modelDomationUser = async (ctx, next) => {
+    const donationUser = await DonationUser.findAll({
+        where: {sponsors_id: 6}
+    });
+    ctx.body = donationUser;
+};
+
+export const modelReplyableUser = async (ctx, next) => {
+    const replyableUser = await ReplyableUser.findAll({
+        where: {survey_id: 9}
+    });
+    ctx.body = replyableUser;
+};
+export const modelQuestionBank = async (ctx, next) => {
+    const questionBank = await QuestionBank.findAll({
+        where: {id: 51}
+    });
+    ctx.body = questionBank;
+}

@@ -15,5 +15,9 @@ modelRouter.get('/question', modelCtrl.modelQuestion);
 modelRouter.get('/questionitem', modelCtrl.modelQuestionItem);
 modelRouter.get('/surveyuser', modelCtrl.modelSurveyUser);
 modelRouter.get('/response', modelCtrl.modelResponse);
+modelRouter.get('/itemresponse', modelCtrl.modelItemResponse);
+modelRouter.get('/donationuser', modelCtrl.modelDomationUser);
+modelRouter.get('/replyableuser', modelCtrl.modelReplyableUser);
+modelRouter.get('/questionbank', modelCtrl.modelQuestionBank);
 
 export default modelRouter;

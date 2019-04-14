@@ -10,3 +10,7 @@ export { default as Question } from './Question';
 export { default as QuestionItem } from './QuestionItem';
 export { default as SurveyUser } from './SurveyUser';
 export { default as Response } from './Response';
+export { default as ItemResponse } from './ItemResponse';
+export { default as DonationUser } from './DonationUser';
+export { default as ReplyableUser } from './ReplyableUser';
+export { default as QuestionBank } from './QuestionBank';
