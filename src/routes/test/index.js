@@ -20,4 +20,5 @@ test.get('/asd', (ctx, next) => {
 
 test.get('/get', testCtrl.getToken);
 
+test.post('/bodyparsor', testCtrl.testBodyParsor);
 export default test;

@@ -1,4 +1,5 @@
 import Koa from 'koa';
+import koaBody from 'koa-body';
 import logger from 'koa-logger';
 import router from 'routes';
 import serverless from 'serverless-http';
@@ -65,6 +66,9 @@ export default class Server {
             }
         });
         app.use(authToken);
+        app.use(koaBody({
+            multipart: true,
+        }));
         app.use(router.routes()).use(router.allowedMethods());
     }
 

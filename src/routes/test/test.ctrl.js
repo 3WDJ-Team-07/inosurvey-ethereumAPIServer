@@ -8,3 +8,9 @@ export const getToken = async (ctx, next) => {
     });
     ctx.body = ctx.cookies.get('access_token') ? 'good job' : 'fail';
 };
+
+export const testBodyParsor = (ctx, next) => {
+    console.log(ctx.request.body);
+    const body = ctx.request.body;
+    ctx.body = body;
+}
