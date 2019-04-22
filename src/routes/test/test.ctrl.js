@@ -13,4 +13,4 @@ export const testBodyParsor = (ctx, next) => {
     console.log(ctx.request.body);
     const body = ctx.request.body;
     ctx.body = body;
-}
+};
