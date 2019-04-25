@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import { abi } from './SurveyCoreABI';
+import Abi from './SurveyCoreABI';
 
 const { 
     ETH_HTTP_HOST : host,
@@ -22,4 +22,4 @@ const {
 // }
 
 export const web3 = new Web3(new Web3.providers.HttpProvider(`http://${host}:${port}`));
-export const contract = new web3.eth.Contract(abi, addr);
+export const contract = new web3.eth.Contract(Abi.abi, addr);

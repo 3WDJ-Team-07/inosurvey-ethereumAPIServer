@@ -14,3 +14,9 @@ export const testBodyParsor = (ctx, next) => {
     const body = ctx.request.body;
     ctx.body = body;
 };
+
+export const momentTest = (ctx, next) => {
+    const { date } = ctx.request.body
+
+    ctx.body = date;
+}

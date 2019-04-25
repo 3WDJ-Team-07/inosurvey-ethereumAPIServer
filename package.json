@@ -35,6 +35,7 @@
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "mariadb": "^2.0.3",
+    "moment": "^2.24.0",
     "nodemon": "^1.18.10",
     "sequelize": "^5.1.0",
     "serverless-http": "^1.9.1",
