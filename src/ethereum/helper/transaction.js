@@ -5,7 +5,7 @@ const {
     ETH_CONTRACT_ADDRESS : contractAddr
 } = process.env;
 
-export const signTx = (privKey, payload) => {
+export const signTx = async (privKey, payload) => {
     let { nonce, data } = payload;
 
     let txObj = {
