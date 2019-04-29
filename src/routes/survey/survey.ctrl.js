@@ -2,6 +2,27 @@ import { web3, contract } from 'ethereum/ethereum';
 import { signTx } from 'ethereum/helper/transaction';
 import { Wallet } from 'database/model';
 
+export const detailSurvey = async (ctx, next) => {
+    try {
+        const { survey_id } = ctx.params;
+
+        const result = await contract.methods.getSurveyRequestDetail(Number(survey_id)).call();
+        
+        ctx.status = 200;
+        ctx.body = {
+            requestPrice: result[0],
+            sellPrice: result[1],
+            rewardPrice: result[2],
+            maximumCount: result[3],
+            currentCount: result[4],
+            startedAt: result[5],
+            questionCount: result[6],
+            isSell: result[7]
+        };
+    } catch(e) {
+        ctx.throw("NOT ALLOW", e);
+    }
+} 
 export const requestSurvey = async (ctx, next) => {
     try {
         const { 
@@ -35,6 +56,7 @@ export const requestSurvey = async (ctx, next) => {
             };
         }
     } catch (e) {
+
         ctx.status = 401;
         ctx.body = {
             message: "false"
