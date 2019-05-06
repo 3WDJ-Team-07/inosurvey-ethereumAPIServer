@@ -29,10 +29,13 @@ const Form = db.define(
         target_isactive: {
             type: Sequelize.BOOLEAN
         },
-        topic_id: {
-            type: Sequelize.INTEGER
+        bgcolor: {
+            type: Sequelize.STRING
         },
         target_id: {
+            type: Sequelize.INTEGER
+        },
+        user_id: {
             type: Sequelize.INTEGER
         },
         started_at: {

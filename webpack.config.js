@@ -12,7 +12,8 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        include: __dirname,
+        exclude: /node_modules\/(?!(koa-bodyparser|koa-logger)\/).*/,
         use: [
           {
             loader: "babel-loader"

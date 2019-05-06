@@ -25,18 +25,19 @@ const Donation = db.define(
         current_amount: {
             type: Sequelize.INTEGER
         },
+        is_achieved: {
+            type: Sequelize.BOOLEAN
+        },
+        donator_id: {
+            type: Sequelize.INTEGER
+        },
         started_at: {
             type: Sequelize.TIME
         },
         closed_at: {
             type: Sequelize.TIME
         },
-        is_achieved: {
-            type: Sequelize.BOOLEAN
-        },
-        donator_id: {
-            type: Sequelize.INTEGER
-        }
+        
     },
     {
         underscored: true,

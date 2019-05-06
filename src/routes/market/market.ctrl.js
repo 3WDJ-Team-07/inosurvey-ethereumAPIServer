@@ -2,41 +2,12 @@ import { web3, contract } from 'ethereum/ethereum';
 import { signTx } from 'ethereum/helper/transaction';
 import { Wallet } from 'database/model';
 
-export const detailSurvey = async (ctx, next) => {
+export const addSurveyMarket = async (ctx, next) => {
     try {
-        const { survey_id } = ctx.params;
-        console.log(survey_id);
-        
-        const result = await contract.methods.getSurveyRequestDetail(Number(survey_id)).call();
-        console.log(result);
-        
-        ctx.status = 200;
-        ctx.body = {
-            requestPrice: result[0],
-            sellPrice: result[1],
-            rewardPrice: result[2],
-            maximumCount: result[3],
-            currentCount: result[4],
-            startedAt: result[5],
-            questionCount: result[6],
-            isSell: result[7]
-        };
-        console.log(ctx.body);
-    } catch(e) {
-        ctx.status = 401;
-        ctx.body = {
-            message: "false"
-        };
-    }
-} 
-
-export const requestSurvey = async (ctx, next) => {
-    try {
-        const { 
+        const {
             user_id,
-            maximumCount,
-            questionCount,
-            startedAt
+            survey_id
+
         } = ctx.request.body;
 
         const userWallet = await Wallet.findOne({
@@ -45,13 +16,18 @@ export const requestSurvey = async (ctx, next) => {
             }
         });
 
+        const price = 100;
+
         const nonce = await web3.eth.getTransactionCount(userWallet.public_key);
         const raw = await signTx(Buffer.from(userWallet.private_key, 'hex'), {
-            nonce: nonce,
-            data: contract.methods.requestSurvey(Number(maximumCount), Number(startedAt), Number(questionCount)).encodeABI()
+            nonce   : nonce,
+            data    : contract.methods.addSurveyMarket(Number(survey_id), Number(price)).encodeABI()
         });
+
         const receipt = await web3.eth.sendSignedTransaction(raw);
-        
+
+        console.log(receipt);
+
         if(receipt.status) {
             ctx.status = 200;
             ctx.body = {
@@ -61,34 +37,36 @@ export const requestSurvey = async (ctx, next) => {
             ctx.status = 401;
             ctx.body = {
                 message: "false"
-            };
+            }
         }
-    } catch (e) {
+    }catch(e) {
         ctx.status = 401;
         ctx.body = {
             message: "false"
         };
     }
-}
+};
 
-export const responseSurvey = async (ctx, next) => {
+export const buySurvey = async (ctx, next) => {
     try {
         const {
-            user_id, 
+            user_id,
             survey_id
         } = ctx.request.body;
+
         const userWallet = await Wallet.findOne({
             where: {
                 user_id: user_id
             }
         });
+
         const nonce = await web3.eth.getTransactionCount(userWallet.public_key);
         const raw = await signTx(Buffer.from(userWallet.private_key, 'hex'), {
             nonce: nonce,
-            data: contract.methods.responseSurvey(Number(survey_id)).encodeABI()
+            data: contract.methods.buySurvey(Number(survey_id)).encodeABI()
         });
         const receipt = await web3.eth.sendSignedTransaction(raw);
-        
+
         if(receipt.status) {
             ctx.status = 200;
             ctx.body = {

@@ -15,3 +15,5 @@ export const transfer = (addr, privKey) => {
 export const balanceOf = (addr) => {
     return contract.methods.balanceOf(addr).call();
 }
+
+

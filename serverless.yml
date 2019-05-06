@@ -20,10 +20,8 @@ functions:
   api:
     handler: src/api.handler
     events:
-      - http:
-          path: /
-          methods: ANY
-      - http:
-          path: /{any+}
-          methods: ANY
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+    cors:
+      origin: '*'
 
