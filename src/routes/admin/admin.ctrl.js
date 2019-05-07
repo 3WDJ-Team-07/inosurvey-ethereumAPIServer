@@ -44,5 +44,13 @@ export const contractSyncDB = async (ctx, next) => {
 }
 
 export const faucet = async (ctx, next) => {
-    
+    try {
+        const {
+            user_id,
+            amount
+        } = ctx.requset.body;
+        
+    } catch (e) {
+        ctx.throw('asd', e);
+    }
 }

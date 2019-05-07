@@ -19,9 +19,6 @@
     "@babel/preset-env": "^7.3.4",
     "babel-loader": "^8.0.5",
     "babel-plugin-module-resolver": "^3.2.0",
-    "serverless": "^1.38.0",
-    "serverless-dotenv-plugin": "^2.0.1",
-    "serverless-webpack": "^5.2.0",
     "webpack": "^4.29.6"
   },
   "dependencies": {
@@ -38,7 +35,6 @@
     "moment": "^2.24.0",
     "nodemon": "^1.18.10",
     "sequelize": "^5.1.0",
-    "serverless-http": "^1.9.1",
-    "web3": "^1.0.0-beta.48"
+    "web3": "^1.0.0-beta.27"
   }
 }

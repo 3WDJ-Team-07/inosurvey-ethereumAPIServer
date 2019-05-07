@@ -9,6 +9,7 @@ const {
 } = process.env;
 
 const web3 = new Web3(new Web3.providers.HttpProvider(`http://${host}:${http_port}`));
+
 web3.setProvider(new Web3.providers.WebsocketProvider(`ws://${host}:${ws_port}`))
 
 const contract = new web3.eth.Contract(Abi.abi, addr);

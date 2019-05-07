@@ -2,7 +2,7 @@ import Koa from 'koa';
 import koaBody from 'koa-body';
 import logger from 'koa-logger';
 import router from 'routes';
-import serverless from 'serverless-http';
+// import serverless from 'serverless-http';
 import cors from 'lib/middlewares/cors';
 import authToken from 'lib/middlewares/authToken';
 import db from 'database/db';
@@ -79,9 +79,9 @@ export default class Server {
         console.log(`Listening to port : ${port}`);
     }
 
-    // serverless handler
-    serverless() {
-        const { app } = this;
-        return serverless(app);
-    }
+    // // serverless handler
+    // serverless() {
+    //     const { app } = this;
+    //     return serverless(app);
+    // }
 }
