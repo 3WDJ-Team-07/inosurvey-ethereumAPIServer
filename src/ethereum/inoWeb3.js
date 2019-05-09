@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import Abi from './SurveyCoreABI';
+import Abi from './SurveyCore.json';
 
 const { 
     ETH_HTTP_HOST           : host,

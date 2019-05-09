@@ -10,7 +10,6 @@ export const createFoundation = async (ctx, next) => {
             closedAt
         } = ctx.request.body;
 
-        console.log(ctx.request.body);
         const userWallet = await Wallet.findOne({
             where: {
                 user_id: user_id
