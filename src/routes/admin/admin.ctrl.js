@@ -11,12 +11,12 @@ export const contractSyncDB = async (ctx, next) => {
         for(let i = 0 ; i < formList.length ; i++) {
             const userWallet    = await Wallet.findOne({ where: { user_id: formList[i].user_id } });
             const questionCount = await Question.count({ where: { form_id: formList[i].id } });
-            const startedAt     = await moment(formList[i].started_at).unix();
+            const createdAt     = await moment(formList[i].created_at).unix();
             const nonce         = await web3.eth.getTransactionCount(userWallet.public_key);
             
             const raw = await signTx(Buffer.from(userWallet.private_key, 'hex'), {
                 nonce: nonce,
-                data: contract.methods.requestSurvey(formList[i].respondent_number, startedAt, questionCount).encodeABI()
+                data: contract.methods.requestSurvey(formList[i].respondent_number, createdAt, questionCount).encodeABI()
             });
             await web3.eth.sendSignedTransaction(raw);
         }
