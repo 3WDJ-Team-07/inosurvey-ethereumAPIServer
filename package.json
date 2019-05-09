@@ -9,7 +9,7 @@
     "start:window": "set NODE_PATH=src & nodemon --inspect src/local --exec babel-node src/local.js",
     "test": "nodemon --inspect src/web3.test --exec babel-node src/web3.test.js",
     "deploy": "sls deploy --stage dev",
-    "production": "pm2 start --interpreter babel-node src/local.js"
+    "production": "pm2 start --interpreter babel-node --name eth_api_server src/local.js"
   },
   "license": "MIT",
   "devDependencies": {
@@ -36,7 +36,6 @@
     "moment": "^2.24.0",
     "nodemon": "^1.18.10",
     "sequelize": "^5.1.0",
-    "web3": "^1.0.0-beta.27",
-    "web3-eth-contract": "^1.0.0-beta.27"
+    "web3": "^1.0.0-beta.27"
   }
 }
