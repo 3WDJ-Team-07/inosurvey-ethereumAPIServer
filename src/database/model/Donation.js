@@ -31,7 +31,10 @@ const Donation = db.define(
         donator_id: {
             type: Sequelize.INTEGER
         },
-        started_at: {
+        created_at: {
+            type: Sequelize.TIME
+        },
+        updated_at: {
             type: Sequelize.TIME
         },
         closed_at: {

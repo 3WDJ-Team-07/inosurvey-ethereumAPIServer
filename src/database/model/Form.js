@@ -38,7 +38,10 @@ const Form = db.define(
         user_id: {
             type: Sequelize.INTEGER
         },
-        started_at: {
+        created_at: {
+            type: Sequelize.TIME
+        },
+        updated_at: {
             type: Sequelize.TIME
         },
         closed_at: {
