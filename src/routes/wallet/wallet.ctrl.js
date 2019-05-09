@@ -55,7 +55,6 @@ export const userReceipt = async (ctx, next) => {
     try {
         const { user_id } = ctx.request.body;
         const { range, method = undefined } = ctx.params;
-        console.log(user_id);
         
         const userWallet = await Wallet.findOne({
             where: {
@@ -133,7 +132,6 @@ export const userReceipt = async (ctx, next) => {
 
         ctx.status = 200;
         ctx.body = await Promise.all(resultList);
-        console.log(ctx.body);
     } catch (e) {
         ctx.status = 404;
         ctx.body = {

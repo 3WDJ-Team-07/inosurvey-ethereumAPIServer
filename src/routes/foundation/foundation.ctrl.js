@@ -47,6 +47,7 @@ export const donateFoundation = async (ctx, next) => {
             donation_id,
             ino
         } = ctx.request.body;
+        
         const userWallet = await Wallet.findOne({
             where: {
                 user_id: user_id

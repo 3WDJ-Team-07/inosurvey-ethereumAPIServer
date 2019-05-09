@@ -1,14 +1,14 @@
 import { web3, contract } from 'ethereum/ethereum';
+import InoWeb3 from 'ethereum/inoWeb3';
 import { signTx } from 'ethereum/helper/transaction';
 import { Wallet } from 'database/model';
 
 export const detailSurvey = async (ctx, next) => {
     try {
+        const inoWeb3 = new InoWeb3();
         const { survey_id } = ctx.params;
-        console.log(survey_id);
         
-        const result = await contract.methods.getSurveyRequestDetail(Number(survey_id)).call();
-        console.log(result);
+        const result = await inoWeb3.inoContract.methods.getSurveyRequestDetail(Number(survey_id)).call();
         
         ctx.status = 200;
         ctx.body = {
@@ -21,7 +21,7 @@ export const detailSurvey = async (ctx, next) => {
             questionCount: result[6],
             isSell: result[7]
         };
-        console.log(ctx.body);
+
     } catch(e) {
         ctx.status = 401;
         ctx.body = {
