@@ -1,7 +1,8 @@
-import { web3, contract } from 'ethereum/ethereum';
+import InoWeb3 from 'ethereum/inoWeb3';
 import walletHelper from 'ethereumjs-wallet';
 import { Wallet } from 'database/model';
 
+const inoWeb3 = new InoWeb3();
 /**  
  * @url /:id/wallet/amount 
  * 
@@ -36,7 +37,7 @@ export const userAmount = async (ctx, next) => {
             }
             return;
         }
-        const currAmount = await contract.methods.balanceOf(userWallet.public_key).call({from: userWallet.public_key});
+        const currAmount = await inoWeb3.inoContract.methods.balanceOf(userWallet.public_key).call({from: userWallet.public_key});
         
         ctx.status = 200;
         ctx.body = {
@@ -72,17 +73,17 @@ export const userReceipt = async (ctx, next) => {
         let receiptList;
 
         if(range == 'all') {
-            receiptList = await contract.methods.getOwnerReceiptList().call({from: userWallet.public_key});
+            receiptList = await inoWeb3.inoContract.methods.getOwnerReceiptList().call({from: userWallet.public_key});
         }else if(range == 'survey') {
             switch (method) {
                 case 'request':
-                    receiptList = await contract.methods.getSurveyRequestReceiptList().call({from: userWallet.public_key});
+                    receiptList = await inoWeb3.inoContract.methods.getSurveyRequestReceiptList().call({from: userWallet.public_key});
                     break;
                 case 'response':
-                    receiptList = await contract.methods.getSurveyResponseReceiptList().call({from: userWallet.public_key});
+                    receiptList = await inoWeb3.inoContract.methods.getSurveyResponseReceiptList().call({from: userWallet.public_key});
                     break;
                 case 'buy': 
-                    receiptList = await contract.methods.getSurveyBuyReceiptList().call({from: userWallet.public_key});
+                    receiptList = await inoWeb3.inoContract.methods.getSurveyBuyReceiptList().call({from: userWallet.public_key});
                     break;
                 case 'sell':
                     // reciptList = await contract.methods.getSurveySellReceiptList().call({from: userWallet.public_key});
@@ -97,10 +98,10 @@ export const userReceipt = async (ctx, next) => {
         }else if(range == 'donation') {
             switch (method) {
                 case 'request':
-                    receiptList = await contract.methods.getFoundationRequestReceiptList().call({from: userWallet.public_key});
+                    receiptList = await inoWeb3.inoContract.methods.getFoundationRequestReceiptList().call({from: userWallet.public_key});
                     break;
                 case 'donate':
-                    receiptList = await contract.methods.getFoundationDonateReceiptList().call({from: userWallet.public_key});
+                    receiptList = await inoWeb3.inoContract.methods.getFoundationDonateReceiptList().call({from: userWallet.public_key});
                     break;
                 default:
                     ctx.status = 404;
@@ -118,7 +119,7 @@ export const userReceipt = async (ctx, next) => {
 
         // 날짜, 내역, 이노
         const resultList = receiptList.map(async (index) => {
-            const receipt = await contract.methods.getReceiptDetail(Number(index)).call({from: userWallet.public_key});  
+            const receipt = await inoWeb3.inoContract.methods.getReceiptDetail(Number(index)).call({from: userWallet.public_key});  
             return {
                 title: receipt[0],
                 method: receipt[1],

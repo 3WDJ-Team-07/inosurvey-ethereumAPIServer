@@ -1,7 +1,8 @@
-import { web3, contract } from 'ethereum/ethereum';
+import InoWeb3 from 'ethereum/inoWeb3';
 import { signTx } from 'ethereum/helper/transaction';
 import { Wallet } from 'database/model';
 
+const inoWeb3 = new InoWeb3();
 export const createFoundation = async (ctx, next) => {
     try {
         const {
@@ -16,12 +17,12 @@ export const createFoundation = async (ctx, next) => {
             }
         });
 
-        const nonce = await web3.eth.getTransactionCount(userWallet.public_key);
+        const nonce = await inoWeb3.eth.getTransactionCount(userWallet.public_key);
         const raw = await signTx(Buffer.from(userWallet.private_key, 'hex'), {
             nonce: nonce,
-            data: contract.methods.createFoundation(Number(maximumAmount), Number(closedAt)).encodeABI()
+            data: inoWeb3.inoContract.methods.createFoundation(Number(maximumAmount), Number(closedAt)).encodeABI()
         });
-        const receipt = await web3.eth.sendSignedTransaction(raw);
+        const receipt = await inoWeb3.eth.sendSignedTransaction(raw);
 
         if(receipt.status) {
             ctx.status = 200;
@@ -52,12 +53,12 @@ export const donateFoundation = async (ctx, next) => {
                 user_id: user_id
             }
         });
-        const nonce = await web3.eth.getTransactionCount(userWallet.public_key);
+        const nonce = await inoWeb3.eth.getTransactionCount(userWallet.public_key);
         const raw = await signTx(Buffer.from(userWallet.private_key, 'hex'), {
             nonce: nonce,
-            data: contract.methods.donation(Number(donation_id), Number(ino)).encodeABI()
+            data: inoWeb3.inoContract.methods.donation(Number(donation_id), Number(ino)).encodeABI()
         });
-        const receipt = await web3.eth.sendSignedTransaction(raw);
+        const receipt = await inoWeb3.eth.sendSignedTransaction(raw);
         if(receipt.status) {
             ctx.status = 200;
             ctx.body = {

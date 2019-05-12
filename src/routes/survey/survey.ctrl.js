@@ -1,11 +1,11 @@
-import { web3, contract } from 'ethereum/ethereum';
 import InoWeb3 from 'ethereum/inoWeb3';
 import { signTx } from 'ethereum/helper/transaction';
 import { Wallet } from 'database/model';
 
+const inoWeb3 = new InoWeb3();
+
 export const detailSurvey = async (ctx, next) => {
     try {
-        const inoWeb3 = new InoWeb3();
         const { survey_id } = ctx.params;
         
         const result = await inoWeb3.inoContract.methods.getSurveyRequestDetail(Number(survey_id)).call();
@@ -45,12 +45,12 @@ export const requestSurvey = async (ctx, next) => {
             }
         });
 
-        const nonce = await web3.eth.getTransactionCount(userWallet.public_key);
+        const nonce = await inoWeb3.eth.getTransactionCount(userWallet.public_key);
         const raw = await signTx(Buffer.from(userWallet.private_key, 'hex'), {
             nonce: nonce,
-            data: contract.methods.requestSurvey(Number(maximumCount), Number(startedAt), Number(questionCount)).encodeABI()
+            data: inoWeb3.inoContract.methods.requestSurvey(Number(maximumCount), Number(startedAt), Number(questionCount)).encodeABI()
         });
-        const receipt = await web3.eth.sendSignedTransaction(raw);
+        const receipt = await inoWeb3.eth.sendSignedTransaction(raw);
         
         if(receipt.status) {
             ctx.status = 200;
@@ -82,12 +82,12 @@ export const responseSurvey = async (ctx, next) => {
                 user_id: user_id
             }
         });
-        const nonce = await web3.eth.getTransactionCount(userWallet.public_key);
+        const nonce = await inoWeb3.eth.getTransactionCount(userWallet.public_key);
         const raw = await signTx(Buffer.from(userWallet.private_key, 'hex'), {
             nonce: nonce,
-            data: contract.methods.responseSurvey(Number(survey_id)).encodeABI()
+            data: inoWeb3.inoContract.methods.responseSurvey(Number(survey_id)).encodeABI()
         });
-        const receipt = await web3.eth.sendSignedTransaction(raw);
+        const receipt = await inoWeb3.eth.sendSignedTransaction(raw);
         
         if(receipt.status) {
             ctx.status = 200;
