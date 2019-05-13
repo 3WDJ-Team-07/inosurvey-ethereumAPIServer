@@ -1,17 +1,19 @@
-import { web3 } from '../ethereum';
+import InoWeb3 from 'ethereum/inoWeb3';
 import Tx from 'ethereumjs-tx';
 
 const { 
     ETH_CONTRACT_ADDRESS : contractAddr
 } = process.env;
 
+const inoWeb3 = new InoWeb3();
+
 export const signTx = async (privKey, payload) => {
     let { nonce, data } = payload;
 
     let txObj = {
-        nonce: web3.utils.toHex(nonce),
-        gasPrice: web3.utils.toHex(0),
-        gasLimit: web3.utils.toHex(3000000),
+        nonce: inoWeb3.utils.toHex(nonce),
+        gasPrice: inoWeb3.utils.toHex(0),
+        gasLimit: inoWeb3.utils.toHex(3000000),
         to: contractAddr,
         data
     };
